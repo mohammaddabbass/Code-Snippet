@@ -127,4 +127,32 @@ class SnippetController extends Controller{
             ]);
         }
     }
+
+    public function deleteSnippet($id)
+    {
+        try {
+            $snippet = Snippet::findOrFail($id);
+            
+            if ($snippet->user_id !== Auth::id()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Unauthorized'
+                ], 403);
+            }
+
+            $snippet->delete();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Snippet deleted'
+            ]);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                "success" => true,
+                "message" => "failed to delete"
+            ]);
+        }
+    }
+
 }

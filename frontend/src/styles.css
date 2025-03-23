@@ -4,7 +4,7 @@
     --border-color: #404040; 
     --text-color-light: #e6e6e6;
     --text-color-dark: #cccccc;
-    --accent-color: #569cd6;
+    --accent-color: #6bb1eb;
     --highlight-color: #ffd700;
     --button-hover-color: #569cd6;
     --button-default-color: #cccccc;
@@ -24,4 +24,32 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    background-color: var(--primary-bg-color);
+    color: var(--text-color-light);
+}
+
+
+.flex {
+    display: flex;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.justify-center {
+    justify-content: center;
+}
+.justify-between {
+    justify-content: space-between;
+}
+.justify-evenly {
+    justify-content: space-evenly;
+}
+.justify-around {
+    justify-content: space-around;
+}
+
+.align-center {
+    align-items: center;
 }

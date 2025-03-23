@@ -1,0 +1,30 @@
+.button {
+    border: none;
+    border-radius: var(--border-radius-medium);
+    padding: 0.6rem 1.3rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 700;
+}
+
+.button:hover {
+    background-color: var(--button-hover-color);
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+.button:active {
+    transform: translateY(1px);
+}
+
+.primary {
+    background-color: var(--accent-color);
+    color: var(--text-color-light);
+}
+
+.primary-outlined {
+    background: transparent;
+    border: 2px solid var(--accent-color);
+    color: var(--accent-color);
+}

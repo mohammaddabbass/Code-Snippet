@@ -14,6 +14,7 @@ Route::group(["prefix" => "v0.1"], function() {
         Route::group(["prefix" => "user"], function() {
             Route::post("/snippet", [SnippetController::class, 'addOrUpdateSnippets']);
             Route::get("/get-snippets", [SnippetController::class, 'getSnippets']);
+            Route::get("/get-snippet/{id}", [SnippetController::class, 'getSnippetById']);
         });
     });
 

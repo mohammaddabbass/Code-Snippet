@@ -109,4 +109,22 @@ class SnippetController extends Controller{
             ], 500);
         }
     }
+
+    public function getSnippetById($id) {
+        try {
+            $snippet = Snippet::with(["user", "tags", "favorites"])
+                ->findOrFail($id);
+
+            return response()->json([
+                "success" => true,
+                "data" => $snippet
+            ]);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                "success" => false,
+                "error" => "No snippets found "
+            ]);
+        }
+    }
 }

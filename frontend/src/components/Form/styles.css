@@ -1,0 +1,39 @@
+.form-container {
+    min-width: 20vw;
+    min-height: 48vh;
+    height: auto;
+    background-color: var(--card-bg-color);
+    border-radius: var(--border-radius-pill);
+}
+
+.form-body {
+    width: 85%;
+    gap: 1rem;
+    margin: 1rem 0rem;
+}
+
+.form-group {
+    width: 100%;
+}
+
+.toggle-text {
+    cursor: pointer;
+}
+
+@media screen and (max-width:1450px) {
+    .form-container {
+        width: 30vw;
+    }
+}
+
+@media screen and (max-width:900px) {
+    .form-container {
+        width: 55vw;
+    }
+}
+
+@media screen and (max-width:567px) {
+    .form-container {
+        width: 80vw;
+    }
+}

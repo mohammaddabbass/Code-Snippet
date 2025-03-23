@@ -1,0 +1,27 @@
+:root {
+    --primary-bg-color: #1a1a1a; 
+    --card-bg-color: #2d2d2d; 
+    --border-color: #404040; 
+    --text-color-light: #e6e6e6;
+    --text-color-dark: #cccccc;
+    --accent-color: #569cd6;
+    --highlight-color: #ffd700;
+    --button-hover-color: #569cd6;
+    --button-default-color: #cccccc;
+    --tag-bg-color: #404040;
+    --tag-text-color: #9cdcfe;
+    --copy-btn-hover-color: #569cd6;
+    --favorite-btn-active-color: #ffd700;
+    --favorite-btn-default-color: #cccccc;
+
+    --border-radius-small: 4px; 
+    --border-radius-medium: 6px;
+    --border-radius-large: 10px;
+    --border-radius-pill: 15px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}

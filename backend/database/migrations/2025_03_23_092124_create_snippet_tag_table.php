@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('snippet_tag', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('snippet_id')->constrained()->onDelete('cascade');
+            $table->foreignId('tag_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

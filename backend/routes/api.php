@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\User\SnippetController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -11,7 +12,8 @@ Route::get('/user', function (Request $request) {
 Route::group(["prefix" => "v0.1"], function() {
     Route::group(["middleware" => "auth:api"], function() {
         Route::group(["prefix" => "user"], function() {
-
+            Route::post("/snippet", [SnippetController::class, 'addOrUpdateSnippets']);
+            Route::get("/get-snippets", [SnippetController::class, 'getSnippets']);
         });
     });
 

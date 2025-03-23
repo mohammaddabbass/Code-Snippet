@@ -5,7 +5,6 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class TagController extends Controller
-{
-    //
+class TagController extends Controller{
+    
 }

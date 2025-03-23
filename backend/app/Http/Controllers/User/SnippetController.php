@@ -9,11 +9,52 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class SnippetController extends Controller{
+
+    public function getSnippets(Request $request)
+    {
+        try {
+            $user = Auth::user();
     
-    public function getSnippets() {
-
+            if (!$user) {
+                return response()->json([
+                    "success" => false,
+                    "message" => "Unauthorized",
+                    "data" => null
+                ], 401);
+            }
+    
+            $query = Snippet::with(["user", "tags"])
+                ->where("user_id", $user->id)
+                ->orderBy("created_at", "desc");
+    
+            if ($request->has("language")) {
+                $query->where("language", $request->language);
+            }
+    
+            if ($request->has("tag")) {
+                $query->whereHas("tags", function ($q) use ($request) {
+                    $q->where("name", $request->tag);
+                });
+            }
+    
+            $perPage = $request->per_page ?? 15;
+            $snippets = $query->paginate($perPage);
+    
+            return response()->json([
+                "success" => true,
+                "message" => "Snippets retrieved successfully",
+                "data" => $snippets
+            ], 200);
+    
+        } catch (\Exception $e) {
+            return response()->json([
+                "success" => false,
+                "message" => "Operation failed: " . $e->getMessage(),
+                "data" => null
+            ], 500);
+        }
     }
-
+    
 
     public function addOrUpdateSnippets(Request $request, $id = "add")
     {
@@ -29,12 +70,11 @@ class SnippetController extends Controller{
             }
     
             $data = [
-                'title' => 'required|string|max:255',
-                'code' => 'required|string',
-                'language' => 'required|string|max:50',
-                'description' => 'nullable|string',
-                'tags' => 'nullable|array',
-                'tags.*' => 'string|max:255'
+                "title" => "required|string|max:255",
+                "code" => "required|string",
+                "language" => "required|string|max:50",
+                "tags" => "nullable|array",
+                "tags.*" => "string|max:255"
             ];
     
             $validatedData = $request->validate($data);
@@ -44,16 +84,16 @@ class SnippetController extends Controller{
             $snippet->fill($validatedData);
             $snippet->save();
     
-            if ($request->has('tags')) {    
+            if ($request->has("tags")) {    
                 $tagIds = [];
-                foreach ($validatedData['tags'] as $tagName) {
-                    $tag = Tag::firstOrCreate(['name' => $tagName]);
+                foreach ($validatedData["tags"] as $tagName) {
+                    $tag = Tag::firstOrCreate(["name" => $tagName]);
                     $tagIds[] = $tag->id;
                 }
                 $snippet->tags()->sync($tagIds);
             }
     
-            $snippet->load('tags');
+            $snippet->load("tags");
     
             return response()->json([
                 "success" => true,

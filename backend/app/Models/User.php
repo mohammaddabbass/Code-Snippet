@@ -21,7 +21,7 @@ class User extends Authenticatable implements JWTSubject {
         'password',
     ];
 
-    /**
+    /** 
      * The attributes that should be hidden for serialization.
      *
      * @var array<int, string>
@@ -59,5 +59,8 @@ class User extends Authenticatable implements JWTSubject {
     {
         return [];
     }
-
+    
+    public function favorites() {
+        return $this->hasMany(Favorite::class);
+    }
 }

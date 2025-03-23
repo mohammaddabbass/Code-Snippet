@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\User\FavoriteController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\User\SnippetController;
 use Illuminate\Http\Request;
@@ -12,10 +12,14 @@ Route::get('/user', function (Request $request) {
 Route::group(["prefix" => "v0.1"], function() {
     Route::group(["middleware" => "auth:api"], function() {
         Route::group(["prefix" => "user"], function() {
-            Route::post("/snippet", [SnippetController::class, 'addOrUpdateSnippets']);
+            Route::post("/snippet/{id?}", [SnippetController::class, 'addOrUpdateSnippets']);
             Route::get("/get-snippets", [SnippetController::class, 'getSnippets']);
             Route::get("/get-snippet/{id}", [SnippetController::class, 'getSnippetById']);
             Route::delete("/delete-snippet/{id}", [SnippetController::class, 'deleteSnippet']);
+            Route::get('/search-snippets', [SnippetController::class, 'searchSnippets']);  
+            
+            Route::post('/favorites/{snippetId}', [FavoriteController::class, 'toggleFavorite']);
+            Route::get('/favorites', [FavoriteController::class, 'getUserFavorites']);
         });
     });
 

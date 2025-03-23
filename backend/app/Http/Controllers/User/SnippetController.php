@@ -112,8 +112,7 @@ class SnippetController extends Controller{
 
     public function getSnippetById($id) {
         try {
-            $snippet = Snippet::with(["user", "tags", "favorites"])
-                ->findOrFail($id);
+            $snippet = Snippet::with(["user", "tags", "favorites"])->findOrFail($id);
 
             return response()->json([
                 "success" => true,
@@ -128,29 +127,50 @@ class SnippetController extends Controller{
         }
     }
 
-    public function deleteSnippet($id)
-    {
+    public function deleteSnippet($id){
         try {
             $snippet = Snippet::findOrFail($id);
             
             if ($snippet->user_id !== Auth::id()) {
                 return response()->json([
-                    'success' => false,
-                    'message' => 'Unauthorized'
+                    "success" => false,
+                    "message" => "Unauthorized"
                 ], 403);
             }
 
             $snippet->delete();
 
             return response()->json([
-                'success' => true,
-                'message' => 'Snippet deleted'
+                "success" => true,
+                "message" => "Snippet deleted"
             ]);
 
         } catch (\Exception $e) {
             return response()->json([
                 "success" => true,
                 "message" => "failed to delete"
+            ]);
+        }
+    }
+
+    public function searchSnippets(Request $request){
+        try {
+            $request->validate(['query' => 'required|string|min:3']);
+
+            $snippets = Snippet::with(['user', 'tags'])
+                ->where('title', 'like', "%{$request->query}%")
+                ->orWhere('code', 'like', "%{$request->query}%")
+                ->paginate(15);
+
+            return response()->json([
+                'success' => true,
+                'data' => $snippets
+            ]);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                "success" => false,
+                "message" => "Not Found" 
             ]);
         }
     }

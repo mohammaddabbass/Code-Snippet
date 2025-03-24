@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import Form from "../../components/Form";
 import FormGroup from "../../components/FormGroup";
 import './styles.css'
+import { requestMethods } from "../../utils/enums/request.methods";
+import { request } from "../../utils/remote/axios";
+import { useNavigate } from "react-router-dom";
 
 const AuthPage = () => {
     const [isRegister, setIsRegister] = useState(false);
@@ -11,15 +14,41 @@ const AuthPage = () => {
         password: "",
     });
 
+    const [error, setError] = useState("");
+    const navigate = useNavigate();
+
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.id]: e.target.value });
     };
 
-    const handleSubmit = () => {
-        if (isRegister) {
-            console.log("Register Data:", formData);
-        } else {
-            console.log("Login Data:", formData);
+    const handleSubmit = async () => {
+        setError("");
+        try {
+            const route = isRegister ? "/guest/register" : "/guest/login";
+            const body = isRegister ? formData : {
+                email: formData.email,
+                password: formData.password
+            };
+
+            const response = await request({
+                method: requestMethods.POST,
+                route,
+                body
+            });
+
+            if (response.error) {
+                console.log(response.message);
+                setError(response.error);
+                console.log(error); 
+            }
+
+            if (response.authorisation?.token) {
+                localStorage.setItem("bearer_token", response.authorisation.token);
+                localStorage.setItem("user", JSON.stringify(response.user));
+                navigate("/");
+            }
+        } catch (error) {
+            setError(error.message || "An error occurred. Please try again.");
         }
     };
 

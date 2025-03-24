@@ -54,3 +54,14 @@ body {
 .align-center {
     align-items: center;
 }
+
+.loading-container {
+    width: 100vw;
+    height: 100vh;
+    color: var(--accent-color);
+}
+
+.loading-container p {
+    font-size: 1.5rem;
+    font-weight: 800;
+}

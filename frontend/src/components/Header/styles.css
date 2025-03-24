@@ -1,0 +1,70 @@
+.navbar {
+    background-color: var(--card-bg-color);
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem 2rem;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+  
+  .navbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .navbar-logo {
+    color: var(--accent-color);
+    font-family: 'Fira Code', monospace;
+    font-size: 1.4rem;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  
+  .nav-menu {
+    gap: 2rem;
+  }
+  
+  .nav-item {
+    color: var(--text-color-dark);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+  }
+  
+  .nav-item:hover {
+    color: var(--button-hover-color);
+  }
+  
+  .nav-actions {
+    gap: 1rem;
+  }
+  
+  .nav-button { 
+    background: var(--border-color);
+    color: var(--text-color-dark);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius-small);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .nav-button:hover {
+    background: #4d4d4d;
+    color: #ffffff;
+  }
+  
+  @media (max-width: 768px) {
+    .nav-menu {
+      display: none;
+    }
+    
+    .mobile-menu-btn {
+      display: block;
+      background: none;
+      border: none;
+      color: var(--text-color-dark);
+      font-size: 1.5rem;
+    }
+  }

@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import CodeBlock from "../CodeBlock";
+import {Link } from "react-router-dom";
+
 import './styles.css';
 
-const SnippetCard = ({ title, language, code, tags }) => {
+const SnippetCard = ({id, title, language, code, tags }) => {
     const [isFavorite, setIsFavorite] = useState(false);
     const [copyStatus, setCopyStatus] = useState("⎘ Copy");
 
@@ -18,9 +20,9 @@ const SnippetCard = ({ title, language, code, tags }) => {
                 <h3 className="card-title">{title}</h3>
                 <span className="language-tag">{language}</span>
             </div>
-
+            <Link to={`/snippets/${id}`} className="snippet-link">
             <CodeBlock code={code} />
-
+            </Link>
             <div className="card-footer">
                 <div className="tags">
                     {tags.map((tag, index) => (
@@ -43,56 +45,5 @@ const SnippetCard = ({ title, language, code, tags }) => {
     );
 };
 
-// Fake Snippet Data
-const fakeSnippets = [
-    {
-        title: "Fibonacci Sequence",
-        language: "Python",
-        code: `def fibonacci(n):
-    a, b = 0, 1
-    for _ in range(n):
-        yield a
-        a, b = b, a + b`,
-        tags: ["algorithm", "math"]
-    },
-    {
-        title: "Hello World",
-        language: "JavaScript",
-        code: `function hello() {
-    console.log("Hello, World!");
-}`,
-        tags: ["beginner", "console"]
-    },
-    {
-        title: "Sorting Algorithm",
-        language: "C++",
-        code: `#include <iostream>
-using namespace std;
 
-void bubbleSort(int arr[], int n) {
-    for (int i = 0; i < n-1; i++)
-        for (int j = 0; j < n-i-1; j++)
-            if (arr[j] > arr[j+1])
-                swap(arr[j], arr[j+1]);
-}`,
-        tags: ["sorting", "algorithm", "C++"]
-    }
-];
-
-const SnippetList = () => {
-    return (
-        <div>
-            {fakeSnippets.map((snippet, index) => (
-                <SnippetCard 
-                    key={index}
-                    title={snippet.title}
-                    language={snippet.language}
-                    code={snippet.code}
-                    tags={snippet.tags}
-                />
-            ))}
-        </div>
-    );
-};
-
-export default SnippetList;
+export default SnippetCard;

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import { request } from "../../utils/remote/axios";
 import { requestMethods } from "../../utils/enums/request.methods";
+import './styles.css'
 
 const ProtectedRoute = () => {
   const [loading, setLoading] = useState(true);
@@ -41,7 +42,8 @@ const ProtectedRoute = () => {
   }, []);
 
   return loading ? (
-    <p>Loading...</p>
+    <div className="loading-container flex column justify-center align-center"><p>Loading...</p></div>
+    
   ) : isAuth ? (
     <Outlet />
   ) : (

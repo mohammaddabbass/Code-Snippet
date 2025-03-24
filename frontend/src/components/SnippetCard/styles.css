@@ -1,0 +1,135 @@
+.snippet-card {
+    background-color: #2d2d2d;
+    border-radius: 10px;
+    width: 25vw;
+    margin: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.card-header {
+    padding: 15px;
+    border-bottom: 1px solid #404040;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-title {
+    color: var(--text-color-light);
+    margin: 0;
+    font-size: 1.2em;
+}
+
+.language-tag {
+    background-color: var(--border-color);
+    color: var(--button-default-color);
+    padding: 4px 10px;
+    border-radius: var(--border-radius-pill);
+    font-size: 0.9em;
+}
+
+.code-container {
+    padding: 1rem;
+    height: 150px; 
+    overflow-y: auto; /* Vertical scroll when needed */
+    background-color: var(--primary-bg-color);
+    border-radius: var(--border-radius-small);
+    margin: 0 1rem 1rem 1rem;
+}
+
+pre {
+    margin: 0;
+    background-color: var(--primary-bg-color);
+    border-radius: var(--border-radius-small);
+    padding: 1rem;
+    overflow-x: auto;
+}
+
+code {
+    color: #cccccc;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9em;
+    line-height: 1.5;
+}
+
+.card-footer {
+    padding: 15px;
+    border-top: 1px solid #404040;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tags {
+    display: flex;
+    gap: 8px;
+}
+
+.tag {
+    background-color: var(--border-color);
+    color: #9cdcfe;
+    padding: 4px 10px;
+    border-radius: var(--border-radius-pill);
+    font-size: 0.85em;
+}
+
+.actions button {
+    background: none;
+    border: none;
+    color: #cccccc;
+    cursor: pointer;
+    padding: 5px;
+    transition: color 0.2s;
+}
+
+.actions button:hover {
+    color: #569cd6;
+}
+
+.favoriteBtn.active {
+    color: #ffd700;
+}
+
+
+.code-container::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.code-container::-webkit-scrollbar-track {
+    background: #1a1a1a;
+    border-radius: 3px;
+}
+
+.code-container::-webkit-scrollbar-thumb {
+    background: #404040;
+    border-radius: 3px;
+}
+
+.code-container::-webkit-scrollbar-thumb:hover {
+    background: #4d4d4d;
+}
+
+pre::-webkit-scrollbar {
+    height: 6px;
+}
+
+pre::-webkit-scrollbar-track {
+    background: #1a1a1a;
+}
+
+pre::-webkit-scrollbar-thumb {
+    background: #404040;
+    border-radius: 3px;
+}
+
+@media screen and (max-width:1000px) {
+    .snippet-card {
+        width: 50vw;
+    }
+}
+@media screen and (max-width:768px) {
+    .snippet-card {
+        width: 80vw;
+    }
+}

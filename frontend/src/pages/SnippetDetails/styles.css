@@ -1,0 +1,126 @@
+.snippet-details-page {
+    background-color: var(--primary-bg-color);
+    min-height: 100vh;
+  }
+  
+  .details-container {
+    background-color: var(--card-bg-color);
+    border-radius: var(--border-radius-large);
+    margin: 7rem auto;
+    width: 30vw;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    padding: 1.2rem;
+  }
+  
+  .details-header {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .details-content {
+    margin: 0 1rem 1rem 1rem;
+    width: 90%;
+  }
+  
+  .code-editor {
+    width: 100%;
+    height: 500px;
+    background-color: var(--primary-bg-color);
+    border: none;
+    border-radius: var(--border-radius-small);
+    padding: 1rem;
+    color: var(--text-color-dark);
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9em;
+    line-height: 1.5;
+    resize: vertical;
+  }
+  
+  .details-actions {
+    padding: 15px;
+    border-top: 1px solid var(--border-color);
+    margin-top: 20px;
+  }
+  
+  .action-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+  }
+  
+  .btn {
+    padding: 8px 20px;
+    border: none;
+    border-radius: var(--border-radius-pill);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.9em;
+    transition: all 0.2s ease;
+  }
+  
+  .edit-btn {
+    background-color: var(--button-hover-color);
+    color: white;
+  }
+  
+  .edit-btn:hover {
+    background-color: #4d8cbd;
+  }
+  
+  .save-btn {
+    background-color: #57a773;
+    color: white;
+  }
+  
+  .save-btn:hover {
+    background-color: #4d9666;
+  }
+  
+  .cancel-btn {
+    background-color: #d19c5a;
+    color: white;
+  }
+  
+  .cancel-btn:hover {
+    background-color: #bd8c4d;
+  }
+  
+  .delete-btn {
+    background-color: #cc5555;
+    color: white;
+  }
+  
+  .delete-btn:hover {
+    background-color: #b34d4d;
+  }
+  
+  .error-message {
+    color: #cc5555;
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  /* Responsive Design */
+  @media screen and (max-width: 1000px) {
+    .details-container {
+      width: 70vw;
+      margin: 20px auto;
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .details-container {
+      width: 90vw;
+      margin: 20px auto;
+    }
+    
+    .details-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+  }

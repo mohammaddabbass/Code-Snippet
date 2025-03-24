@@ -1,7 +1,12 @@
 
 import "./styles.css";
 import AuthPage from "./pages/Auth";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Home from "./pages/Home";
+import Favorites from "./pages/Favorites";
+import Add from "./pages/Add";
+import SnippetDetails from "./pages/SnippetDetails";
 
 
 function App() {
@@ -10,11 +15,11 @@ function App() {
     <>
       <Routes>
         <Route path="/auth" element={<AuthPage/>} />
-          {/* <Route element={<ProtectedRoute />}> */}
-          <Route path="/" element={''} />
-          <Route path="/profile" element={<h1>Profile</h1>} />
-          <Route path="/contact" element={<h1>Contact Us</h1>} />
-        {/* </Route> */}
+          <Route element={<ProtectedRoute/>}>
+          <Route path="/" element={<Home/>} />
+          <Route path="/favorites" element={<Favorites/>} />
+          <Route path="/add-snippet" element={<Add/>} />
+          <Route path="/snippets/:id" element={<SnippetDetails />} />        </Route>
       </Routes>
     </>
   );

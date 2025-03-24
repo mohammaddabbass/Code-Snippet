@@ -25,6 +25,10 @@
     margin: 0 1rem 1rem 1rem;
     width: 90%;
   }
+
+  .details-content .code-container {
+    width: 100%;
+  }
   
   .code-editor {
     width: 100%;

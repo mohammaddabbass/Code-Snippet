@@ -103,7 +103,7 @@ const SnippetDetails = () => {
   return (
     <div className="snippet-details-page flex column justify-center align-center">
       <Header />
-      <div className="details-container">
+      <div className="details-container flex column justify-evenly a;ign-center">
         <div className="details-header">
           <h2 className="card-title">{snippet.title}</h2>
           <span className="language-tag">{snippet.language}</span>
